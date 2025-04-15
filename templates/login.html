@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Administrativo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1c2339, #121a2e);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 1);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 440px;
+    position: relative;
+    z-index: 10;
+    transition: all 0.3s ease;
+    margin: 0 auto; /* Keep centered */
+}
+
+/* Media query for medium screens */
+@media (min-width: 768px) {
+    .container {
+        max-width: 500px;
+        padding: 2.5rem;
+    }
+}
+
+/* Media query for large screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 600px;
+        padding: 3rem;
+    }
+    
+    .logo i {
+        font-size: 3.2rem;
+    }
+    
+    .logo h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Media query for extra large screens */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 700px;
+        padding: 3.5rem;
+    }
+    
+    .logo i {
+        font-size: 3.5rem;
+    }
+    
+    .logo h1 {
+        font-size: 2.2rem;
+    }
+    
+    .form-group input {
+        padding: 1.2rem 1rem 1.2rem 3.2rem;
+        font-size: 1.1rem;
+    }
+    
+    .btn {
+        padding: 1.3rem;
+        font-size: 1.15rem;
+    }
+}
+
+/* Container hover animation */
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo i {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #1c2339, #4a5fa4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+
+.logo h1 {
+    color: #1c2339;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 0.7rem;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.logo p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.restricted-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: linear-gradient(45deg, #c92c2c, #e74c3c);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(201, 44, 44, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.restricted-badge i {
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+
+.form-group {
+    margin-bottom: 1.8rem;
+    position: relative;
+}
+
+.form-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #1c2339;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.form-group input:focus {
+    border-color: #3a4e84;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(58, 78, 132, 0.2);
+    background-color: white;
+}
+
+.form-group input:focus + i {
+    color: #3a4e84;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.btn {
+    width: 100%;
+    padding: 1.1rem;
+    background: linear-gradient(45deg, #1c2339, #3a4e84);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(28, 35, 57, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #161d2f, #314377);
+    box-shadow: 0 7px 20px rgba(26, 35, 60, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn:hover:before {
+    left: 100%;
+}
+
+.footer {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer i {
+    margin-right: 6px;
+    color: #3a4e84;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+}
+
+.forgot-password a {
+    color: #3a4e84;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.forgot-password a:hover {
+    color: #1c2339;
+    text-decoration: underline;
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Particles and decorative elements */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 15s infinite linear;
+}
+
+.glow {
+    position: fixed;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle, rgba(74, 95, 164, 0.3) 0%, rgba(74, 95, 164, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.glow-1 {
+    top: -20%;
+    right: -20%;
+}
+
+.glow-2 {
+    bottom: -30%;
+    left: -20%;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+    }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .container {
+        padding: 1.8rem 1.5rem;
+        width: 95%;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo i {
+        font-size: 2.5rem;
+    }
+    
+    .restricted-badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.65rem;
+    }
+    
+    .form-group input {
+        padding: 0.9rem 1rem 0.9rem 2.8rem;
+    }
+    
+    .btn {
+        padding: 0.9rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="restricted-badge">
+            <i class="fas fa-lock"></i> Restrito
+        </div>
+        
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <h1>Painel Administrativo</h1>
+            <p>Acesso exclusivo para administradores</p>
+        </div>
+        
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Email do usuario" required>
+                <i class="fas fa-user"></i>
+            </div>
+            
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Senha" required>
+                <i class="fas fa-lock"></i>
+            </div>
+            
+            <div class="forgot-password">
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+            
+            <button type="submit" class="btn" id="loginBtn">
+                Acessar Sistema
+            </button>
+        </form>
+        
+        <div class="footer">
+            <i class="fas fa-shield-halved"></i> Sistema de administração v1.5
+        </div>
+    </div>
+            <!-- Incluir Firebase usando CDN (versión 9 compat) -->
+            <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+        // Criar partículas de fundo
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 25;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Tamanho aleatório
+        const size = Math.random() * 35 + 10;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Posição aleatória
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Opacidade aleatória
+        particle.style.opacity = Math.random() * 0.2 + 0.1;
+        
+        // Duração aleatória
+        const duration = Math.random() * 15 + 10;
+        particle.style.animation = `float ${duration}s infinite linear`;
+        
+        // Atraso aleatório
+        const delay = Math.random() * 7;
+        particle.style.animationDelay = `-${delay}s`;
+        
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Executar após carregamento da página
+window.addEventListener('load', () => {
+    createParticles();
+    document.querySelector('.container').classList.add('fade-in');
+});
+
+// Função para mostrar erros de maneira mais elegante
+function showError(message) {
+    // Checar se já existe um elemento de erro
+    let errorElement = document.querySelector('.error-message');
+    
+    if (!errorElement) {
+        errorElement = document.createElement('div');
+        errorElement.classList.add('error-message');
+        errorElement.style.color = '#c92c2c';
+        errorElement.style.fontSize = '0.85rem';
+        errorElement.style.textAlign = 'center';
+        errorElement.style.marginTop = '1rem';
+        errorElement.style.padding = '0.5rem';
+        errorElement.style.borderRadius = '5px';
+        errorElement.style.backgroundColor = 'rgba(201, 44, 44, 0.1)';
+        
+        const form = document.getElementById('adminLoginForm');
+        form.appendChild(errorElement);
+    }
+    
+    errorElement.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+    
+    // Animar elementos do formulário para indicar erro
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        if (!input.value) {
+            input.style.borderColor = '#c92c2c';
+            setTimeout(() => {
+                input.style.borderColor = 'rgba(0, 0, 0, 0.15)';
+            }, 2000);
+        }
+    });
+    
+    // Remover erro após 3 segundos
+    setTimeout(() => {
+        errorElement.style.opacity = '0';
+        setTimeout(() => {
+            errorElement.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Configuração do Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyBYErkC2m3zm1bf5gUyC0WLHCRH2oxE204",
+    authDomain: "sistema-de-auten-login.firebaseapp.com",
+    projectId: "sistema-de-auten-login",
+    storageBucket: "sistema-de-auten-login.firebasestorage.app",
+    messagingSenderId: "7422310040",
+    appId: "1:7422310040:web:1c0777aabd28c31d8a02ed",
+    measurementId: "G-NGC915K7P9"
+  };
+
+// Função para mostrar logs com estilo
+function logDebug(message, type = 'info') {
+  const styles = {
+    info: 'color: #2196F3; background: rgba(33, 150, 243, 0.1); padding: 2px 5px; border-radius: 3px;',
+    success: 'color: #4CAF50; background: rgba(76, 175, 80, 0.1); padding: 2px 5px; border-radius: 3px;',
+    error: 'color: #F44336; background: rgba(244, 67, 54, 0.1); padding: 2px 5px; border-radius: 3px;',
+    warning: 'color: #FF9800; background: rgba(255, 152, 0, 0.1); padding: 2px 5px; border-radius: 3px;'
+  };
+  
+  console.log(`%c[Auth Debug] ${message}`, styles[type]);
+}
+
+// Função para mostrar erros de maneira mais elegante
+function showError(message) {
+    logDebug(`Erro: ${message}`, 'error');
+    
+    // Checar se já existe um elemento de erro
+    let errorElement = document.querySelector('.error-message');
+    
+    if (!errorElement) {
+        errorElement = document.createElement('div');
+        errorElement.classList.add('error-message');
+        errorElement.style.color = '#c92c2c';
+        errorElement.style.fontSize = '0.85rem';
+        errorElement.style.textAlign = 'center';
+        errorElement.style.marginTop = '1rem';
+        errorElement.style.padding = '0.5rem';
+        errorElement.style.borderRadius = '5px';
+        errorElement.style.backgroundColor = 'rgba(201, 44, 44, 0.1)';
+        
+        const form = document.getElementById('adminLoginForm');
+        form.appendChild(errorElement);
+    }
+    
+    errorElement.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+    
+    // Animar elementos do formulário para indicar erro
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        if (!input.value) {
+            input.style.borderColor = '#c92c2c';
+            setTimeout(() => {
+                input.style.borderColor = 'rgba(0, 0, 0, 0.15)';
+            }, 2000);
+        }
+    });
+    
+    // Remover erro após 3 segundos
+    setTimeout(() => {
+        errorElement.style.opacity = '0';
+        setTimeout(() => {
+            errorElement.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Inicializar o Firebase com verificação
+try {
+    // Verificar se o Firebase já está inicializado de outra forma
+    firebase.initializeApp(firebaseConfig);
+    logDebug('Firebase inicializado com sucesso', 'success');
+} catch (error) {
+    if (error.code === "app/duplicate-app") {
+        logDebug('Firebase já estava inicializado', 'warning');
+    } else {
+        logDebug(`Erro crítico ao inicializar Firebase: ${error.message}`, 'error');
+        console.error('Erro completo:', error);
+    }
+}
+// Função para testar se um email existe no Firebase Auth
+document.addEventListener('DOMContentLoaded', function() {
+    // Define the function in the proper scope
+    window.checkEmailExists = function(email) {
+        // Log for debugging purposes
+        logDebug(`Verificando se email existe: ${email}`, 'info');
+        console.log("Firebase config being used:", firebaseConfig.projectId);
+        
+        // Try direct sign-in instead of checking methods
+        return firebase.auth().signInWithEmailAndPassword(email, "dummy-password-that-will-fail")
+            .then(() => {
+                // This shouldn't actually succeed with a dummy password
+                logDebug(`Email existe (resultado inesperado)`, 'warning');
+                return true;
+            })
+            .catch((error) => {
+                // If the error is 'wrong-password', the email exists
+                if (error.code === 'auth/wrong-password') {
+                    logDebug(`Email ${email} existe (confirmado pelo erro de senha)`, 'success');
+                    return true;
+                } 
+                // If the error is 'user-not-found', the email doesn't exist
+                else if (error.code === 'auth/user-not-found') {
+                    logDebug(`Email ${email} não existe no Firebase`, 'warning');
+                    return false;
+                }
+                // For other errors, assume the email might exist
+                else {
+                    logDebug(`Não foi possível determinar se o email existe. Erro: ${error.code}`, 'warning');
+                    return true; // Assume it exists to be safe
+                }
+            });
+    };
+
+    // Definindo as funções de exibição de mensagens caso não existam
+    window.showError = window.showError || function(message) {
+        console.error("Error:", message);
+        // Implementação visual para erros
+        const errorDiv = document.getElementById('error-message') || document.createElement('div');
+        errorDiv.id = 'error-message';
+        errorDiv.className = 'alert alert-danger';
+        errorDiv.textContent = message;
+        
+        const form = document.getElementById('adminLoginForm');
+        form.insertBefore(errorDiv, form.firstChild);
+    };
+
+    window.showSuccess = window.showSuccess || function(message) {
+        console.log("Success:", message);
+        // Implementação visual para sucesso
+        const successDiv = document.getElementById('success-message') || document.createElement('div');
+        successDiv.id = 'success-message';
+        successDiv.className = 'alert alert-success';
+        successDiv.textContent = message;
+        
+        const form = document.getElementById('adminLoginForm');
+        form.insertBefore(successDiv, form.firstChild);
+    };
+
+    window.logDebug = window.logDebug || function(message, type) {
+        console.log(`[${type}]`, message);
+    };
+
+    // Gerenciar formulário de login (versão aprimorada com mais logs)
+    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        
+        logDebug(`Tentativa de login para: ${email}`, 'info');
+        
+        if (!email || !password) {
+            showError('Por favor, preencha todos os campos!');
+            return;
+        }
+        
+        const btn = document.getElementById('loginBtn');
+        const originalBtnText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Autenticando...';
+        btn.disabled = true;
+        
+        // Testar a conexão com o Firebase antes de prosseguir
+        checkEmailExists(email)
+            .then((emailExists) => {
+                if (!emailExists) {
+                    btn.innerHTML = originalBtnText;
+                    btn.disabled = false;
+                    showError('Este email não possui cadastro no sistema.');
+                    return Promise.reject(new Error('Email não cadastrado'));
+                }
+                
+                logDebug(`Tentando autenticar ${email}...`, 'info');
+                
+                return firebase.auth().signInWithEmailAndPassword(email, password);
+            })
+            .then((userCredential) => {
+                // Login bem-sucedido
+                const user = userCredential.user;
+                logDebug(`Login bem-sucedido para ${user.email}`, 'success');
+                
+                // Exibir mensagem de sucesso antes do redirecionamento
+                showSuccess('Login bem-sucedido! Redirecionando...');
+                
+                // Verifique se o usuário está autenticado antes de redirecionar
+                console.log("Usuário autenticado:", user);
+                console.log("Tentando redirecionar para painel_adm.html");
+                
+                // Pequeno atraso antes do redirecionamento
+                setTimeout(() => {
+                    try {
+                        // Armazenar informações de autenticação localmente se necessário
+                        localStorage.setItem('userEmail', user.email);
+                        
+                        // Forçar o redirecionamento com caminho absoluto
+                        const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+                        window.location.href = basePath + 'painel_adm.html';
+                        
+                        // Verificação adicional
+                        setTimeout(() => {
+                            console.log("Se você ainda vê esta mensagem, o redirecionamento falhou.");
+                        }, 2000);
+                    } catch (redirectError) {
+                        console.error("Erro ao redirecionar:", redirectError);
+                        showError(`Não foi possível redirecionar: ${redirectError.message}`);
+                    }
+                }, 1000);
+            })
+            .catch((error) => {
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+                
+                logDebug(`Erro de autenticação: ${error.code} - ${error.message}`, 'error');
+                
+                // Traduzir mensagens de erro comuns
+                switch (error.code) {
+                    case 'auth/wrong-password':
+                        showError('Senha incorreta');
+                        break;
+                    case 'auth/too-many-requests':
+                        showError('Muitas tentativas. Tente novamente mais tarde.');
+                        break;
+                    case 'auth/user-not-found':
+                        showError('Este email não está cadastrado');
+                        break;
+                    case 'auth/invalid-email':
+                        showError('Formato de email inválido');
+                        break;
+                    default:
+                        showError(`Erro de autenticação: ${error.message}`);
+                }
+            });
+    });
+});
+</script>
+    
+</body>
+</html>

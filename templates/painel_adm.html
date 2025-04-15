@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - Lanchonete</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/public/css/painel_adm.css">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <div class="logo-img"></div>
+          <h3 class="logo-text">BurgerAdmin</h3>
+        </div>
+      </div>
+      
+      <ul class="sidebar-menu">
+        <li class="sidebar-item active" data-target="dashboard">
+          <i class="fas fa-chart-line"></i>
+          <span class="menu-text">Dashboard</span>
+        </li>
+        <li class="sidebar-item" data-target="produtos">
+          <i class="fas fa-hamburger"></i>
+          <span class="menu-text">Produtos</span>
+        </li>
+        <li class="sidebar-item" data-target="promocoes">
+          <i class="fas fa-tags"></i>
+          <span class="menu-text">Promoções</span>
+        </li>
+        <li class="sidebar-item" data-target="estoque">
+          <i class="fas fa-boxes"></i>
+          <span class="menu-text">Estoque</span>
+        </li>
+        <li class="sidebar-item" data-target="pedidos">
+          <i class="fas fa-clipboard-list"></i>
+          <span class="menu-text">Pedidos</span>
+        </li>
+        <li class="sidebar-item" data-target="mesas">
+          <i class="fas fa-chair"></i>
+          <span class="menu-text">Mesas</span>
+        </li>
+        
+        <div class="sidebar-divider"></div>
+        
+        <li class="sidebar-item" data-target="relatorios">
+          <i class="fas fa-chart-bar"></i>
+          <span class="menu-text">Relatórios</span>
+        </li>
+        <li class="sidebar-item" data-target="personalizar">
+          <i class="fas fa-paint-brush"></i>
+          <span class="menu-text">Personalizar</span>
+        </li>
+        <li class="sidebar-item" data-target="pagamento">
+          <i class="fas fa-credit-card"></i>
+          <span class="menu-text">Pagamento</span>
+        </li>
+        
+        <div class="sidebar-divider"></div>
+        
+        <li class="sidebar-item" data-target="configuracoes">
+          <i class="fas fa-cog"></i>
+          <span class="menu-text">Configurações</span>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Topbar -->
+      <div class="topbar">
+        <button class="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Pesquisar...">
+        </div>
+        
+        <div class="user-menu">
+          <div class="notification">
+            <i class="fas fa-bell"></i>
+            <div class="notification-badge">3</div>
+          </div>
+          
+          <div class="profile">
+            <div class="profile-img"></div>
+            <span>Admin</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Content Areas -->
+      
+      <!-- Dashboard -->
+      <div class="content active" id="dashboard">
+        <div class="content-header">
+          <h2 class="title">Dashboard</h2>
+          <div>
+            <button class="btn btn-primary">
+              <i class="fas fa-download"></i> Exportar Relatório
+            </button>
+          </div>
+        </div>
+        
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(255, 107, 53, 0.1); color: var(--primary);">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="stat-info">
+              <h4>R$ 2.580,00</h4>
+              <p>Vendas de Hoje</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(46, 196, 182, 0.1); color: var(--accent);">
+              <i class="fas fa-receipt"></i>
+            </div>
+            <div class="stat-info">
+              <h4>42</h4>
+              <p>Pedidos de Hoje</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(255, 190, 11, 0.1); color: #ca8a04;">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <h4>18</h4>
+              <p>Novos Clientes</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(111, 66, 193, 0.1); color: #6f42c1;">
+              <i class="fas fa-hamburger"></i>
+            </div>
+            <div class="stat-info">
+              <h4>X-Tudo</h4>
+              <p>Mais Vendido</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Vendas Recentes</h3>
+            <div>
+              <select class="form-control" style="width: auto;">
+                <option>Hoje</option>
+                <option>Esta Semana</option>
+                <option>Este Mês</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Cliente</th>
+                  <th>Pedido</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                  <th>Hora</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#12345</td>
+                  <td>Carlos Silva</td>
+                  <td>1x X-Tudo, 1x Refrigerante</td>
+                  <td>R$ 32,90</td>
+                  <td><span class="status active">Entregue</span></td>
+                  <td>14:25</td>
+                </tr>
+                <tr>
+                  <td>#12344</td>
+                  <td>Ana Souza</td>
+                  <td>1x X-Salada, 1x Batata</td>
+                  <td>R$ 28,50</td>
+                  <td><span class="status active">Entregue</span></td>
+                  <td>14:15</td>
+                </tr>
+                <tr>
+                  <td>#12343</td>
+                  <td>Pedro Santos</td>
+                  <td>1x Combo Família</td>
+                  <td>R$ 65,90</td>
+                  <td><span class="status inactive">Em Preparo</span></td>
+                  <td>14:05</td>
+                </tr>
+                <tr>
+                  <td>#12342</td>
+                  <td>Maria Oliveira</td>
+                  <td>1x X-Bacon, 1x Milkshake</td>
+                  <td>R$ 36,80</td>
+                  <td><span class="status inactive">Em Entrega</span></td>
+                  <td>13:50</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Produtos -->
+      <div class="content" id="produtos">
+        <div class="content-header">
+          <h2 class="title">Gerenciar Produtos</h2>
+          <div>
+            <button class="btn-primary" id="add-product-btn">
+              <i class="fas fa-plus">Adicionar Produto</i> 
+            </button>
+          </div>
+        </div>
+        <!-- Add Product Modal -->
+<div class="modal-overlay" id="add-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title">Adicionar novo produto</h3>
+      <button class="close-btn" id="close-add-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <h4 class="section-title">Informações básicas</h4>
+      <div class="form-group">
+        <label for="product-name">Nome do produto</label>
+        <input type="text" id="product-name" placeholder="Ex: X-Burger Especial">
+      </div>
+
+      <div class="form-group">
+        <label for="product-category">Categoria</label>
+        <select id="product-category">
+          <option value="">Selecione uma categoria</option>
+          <option value="Hambúrgueres">Hambúrgueres</option>
+          <option value="Porções">Porções</option>
+          <option value="Bebidas">Bebidas</option>
+          <option value="Combos">Combos</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="product-price">Preço (R$)</label>
+        <input type="text" id="product-price" placeholder="0,00">
+      </div>
+
+      <div class="form-group">
+        <label for="product-description">Descrição do produto</label>
+        <textarea id="product-description" placeholder="Descreva os principais ingredientes e características do produto..."></textarea>
+      </div>
+
+      <h4 class="section-title">Imagem do produto</h4>
+      <div class="image-upload" id="image-uploader">
+        <i class="fas fa-camera"></i>
+        <p>Clique para fazer upload ou arraste uma imagem</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" id="cancel-add-btn">Cancelar</button>
+      <button class="btn-primary" id="save-product-btn">Adicionar produto</button>
+    </div>
+  </div>
+</div>
+
+      <!-- Promoções -->
+      <div class="content" id="promocoes">
+        <div class="content-header">
+          <h2 class="title">Gerenciar Promoções</h2>
+          <div>
+            <button class="btn btn-primary" id="add-promocao-btn">
+              <i class="fas fa-plus"></i> Adicionar Promoção
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Promoções Ativas</h3>
+            <button class="btn btn-light">
+              <i class="fas fa-filter"></i> Filtrar
+            </button>
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Desconto</th>
+                  <th>Validade</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Combo Família</td>
+                  <td>4 X-Tudo + 4 Refrigerantes + 2 Batatas grandes</td>
+                  <td>15%</td>
+                  <td>30/04/2025</td>
+                  <td><span class="status active">Ativo</span></td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Happy Hour</td>
+                  <td>Desconto em todas as porções das 17h às 19h</td>
+                  <td>10%</td>
+                  <td>Indeterminado</td>
+                  <td><span class="status active">Ativo</span></td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Segunda do X-Salada</td>
+                  <td>X-Salada com desconto toda segunda-feira</td>
+                  <td>20%</td>
+                  <td>Indeterminado</td>
+                  <td><span class="status inactive">Desativado</span></td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Estoque -->
+      <div class="content" id="estoque">
+        <div class="content-header">
+          <h2 class="title">Gerenciar Estoque</h2>
+          <div>
+            <button class="btn btn-success" id="add-compra-btn">
+              <i class="fas fa-plus"></i> Registrar Compra
+            </button>
+            <button class="btn btn-primary" id="add-item-btn">
+              <i class="fas fa-plus"></i> Adicionar Item
+            </button>
+          </div>
+        </div>
+        
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(46, 196, 182, 0.1); color: var(--accent);">
+              <i class="fas fa-boxes"></i>
+            </div>
+            <div class="stat-info">
+              <h4>42</h4>
+              <p>Itens em Estoque</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(255, 107, 53, 0.1); color: var(--primary);">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-info">
+              <h4>5</h4>
+              <p>Itens Abaixo do Mínimo</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(255, 190, 11, 0.1); color: #ca8a04;">
+              <i class="fas fa-calendar-day"></i>
+            </div>
+            <div class="stat-info">
+              <h4>R$ 850,00</h4>
+              <p>Compras do Mês</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(111, 66, 193, 0.1); color: #6f42c1;">
+              <i class="fas fa-truck"></i>
+            </div>
+            <div class="stat-info">
+              <h4>3</h4>
+              <p>Pedidos Pendentes</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Ingredientes</h3>
+            <div class="search-box" style="width: 300px;">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Buscar ingredientes...">
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Categoria</th>
+                  <th>Quantidade</th>
+                  <th>Unidade</th>
+                  <th>Status</th>
+                  <th>Último Pedido</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Hambúrguer</td>
+                  <td>Carnes</td>
+                  <td>
+                    <div>120 un</div>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 60%; background-color: var(--accent);"></div>
+                    </div>
+                  </td>
+                  <td>Unidade</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                  <td>23/03/2025</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Pão de Hambúrguer</td>
+                  <td>Pães</td>
+                  <td>
+                    <div>80 un</div>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 35%; background-color: #ca8a04;"></div>
+                    </div>
+                  </td>
+                  <td>Unidade</td>
+                  <td><span class="badge badge-warning">Baixo</span></td>
+                  <td>20/03/2025</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Queijo Cheddar</td>
+                  <td>Laticínios</td>
+                  <td>
+                    <div>2.5 kg</div>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 15%; background-color: var(--primary);"></div>
+                    </div>
+                  </td>
+                  <td>Quilograma</td>
+                  <td><span class="badge badge-danger">Crítico</span></td>
+                  <td>18/03/2025</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Batata Congelada</td>
+                  <td>Congelados</td>
+                  <td>
+                    <div>15 kg</div>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 70%; background-color: var(--accent);"></div>
+                    </div>
+                  </td>
+                  <td>Quilograma</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                  <td>15/03/2025</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Pedidos -->
+      <div class="content" id="pedidos">
+        <div class="content-header">
+          <h2 class="title">Gerenciar Pedidos</h2>
+          <div>
+            <button class="btn btn-primary">
+              <i class="fas fa-plus"></i> Novo Pedido
+            </button>
+          </div>
+        </div>
+        
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(255, 107, 53, 0.1); color: var(--primary);">
+              <i class="fas fa-hourglass-start"></i>
+            </div>
+            <div class="stat-info">
+              <h4>5</h4>
+              <p>Novos Pedidos</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(46, 196, 182, 0.1); color: var(--accent);">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="stat-info">
+              <h4>3</h4>
+              <p>Em Preparo</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(255, 190, 11, 0.1); color: #ca8a04;">
+              <i class="fas fa-motorcycle"></i>
+            </div>
+            <div class="stat-info">
+              <h4>2</h4>
+              <p>Em Entrega</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(111, 66, 193, 0.1); color: #6f42c1;">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-info">
+              <h4>32</h4>
+              <p>Completos Hoje</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Pedidos Ativos</h3>
+            <div>
+              <select class="form-control" style="width: auto;">
+                <option>Todos os Pedidos</option>
+                <option>Novos</option>
+                <option>Em Preparo</option>
+                <option>Em Entrega</option>
+                <option>Completos</option>
+                <option>Cancelados</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Cliente</th>
+                  <th>Itens</th>
+                  <th>Total</th>
+                  <th>Hora</th>
+                  <th>Status</th>
+                  <th>Pagamento</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#12348</td>
+                  <td>Lucas Ferreira</td>
+                  <td>1x X-Bacon, 1x Batata, 1x Refrigerante</td>
+                  <td>R$ 39,90</td>
+                  <td>15:20</td>
+                  <td><span class="status inactive">Novo</span></td>
+                  <td>Cartão</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn btn-success btn-sm">Aceitar</button>
+                      <button class="btn btn-light btn-sm">Detalhes</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#12347</td>
+                  <td>Juliana Costa</td>
+                  <td>1x X-Tudo, 1x Onion Rings</td>
+                  <td>R$ 37,80</td>
+                  <td>15:10</td>
+                  <td><span class="status active">Em Preparo</span></td>
+                  <td>Dinheiro</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn btn-success btn-sm">Finalizar</button>
+                      <button class="btn btn-light btn-sm">Detalhes</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#12346</td>
+                  <td>Rafael Mendes</td>
+                  <td>1x Combo Família</td>
+                  <td>R$ 65,90</td>
+                  <td>14:55</td>
+                  <td><span class="status active">Em Entrega</span></td>
+                  <td>PIX</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn btn-success btn-sm">Entregue</button>
+                      <button class="btn btn-light btn-sm">Detalhes</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mesas -->
+      <div class="content" id="mesas">
+        <div class="content-header">
+          <h2 class="title">Gerenciar Mesas</h2>
+          <div>
+            <button class="btn btn-primary">
+              <i class="fas fa-plus"></i> Adicionar Mesa
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Status das Mesas</h3>
+            <div>
+              <select class="form-control" style="width: auto;">
+                <option>Todas</option>
+                <option>Ocupadas</option>
+                <option>Livres</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="mesa-container">
+              <div class="mesa-card free">
+                <div class="mesa-number">1</div>
+                <div class="mesa-status" style="background-color: rgba(46, 196, 182, 0.2); color: var(--accent);">Livre</div>
+                <div class="mesa-actions">
+                  <button class="btn-icon btn-edit"><i class="fas fa-user-plus"></i></button>
+                  <button class="btn-icon btn-light"><i class="fas fa-qrcode"></i></button>
+                </div>
+              </div>
+              
+              <div class="mesa-card occupied">
+                <div class="mesa-number">2</div>
+                <div class="mesa-status" style="background-color: rgba(255, 107, 53, 0.2); color: var(--primary);">Ocupada</div>
+                <div class="mesa-info">
+                  <small>3 pessoas • 35 min</small>
+                </div>
+                <div class="mesa-actions">
+                  <button class="btn-icon btn-edit"><i class="fas fa-receipt"></i></button>
+                  <button class="btn-icon btn-light"><i class="fas fa-info-circle"></i></button>
+                </div>
+              </div>
+              
+              <div class="mesa-card occupied">
+                <div class="mesa-number">3</div>
+                <div class="mesa-status" style="background-color: rgba(255, 107, 53, 0.2); color: var(--primary);">Ocupada</div>
+                <div class="mesa-info">
+                  <small>2 pessoas • 15 min</small>
+                </div>
+                <div class="mesa-actions">
+                  <button class="btn-icon btn-edit"><i class="fas fa-receipt"></i></button>
+                  <button class="btn-icon btn-light"><i class="fas fa-info-circle"></i></button>
+                </div>
+              </div>
+              
+              <div class="mesa-card free">
+                <div class="mesa-number">4</div>
+                <div class="mesa-status" style="background-color: rgba(46, 196, 182, 0.2); color: var(--accent);">Livre</div>
+                <div class="mesa-actions">
+                  <button class="btn-icon btn-edit"><i class="fas fa-user-plus"></i></button>
+                  <button class="btn-icon btn-light"><i class="fas fa-qrcode"></i></button>
+                </div>
+              </div>
+              
+              <div class="mesa-card free">
+                <div class="mesa-number">5</div>
+                <div class="mesa-status" style="background-color: rgba(46, 196, 182, 0.2); color: var(--accent);">Livre</div>
+                <div class="mesa-actions">
+                  <button class="btn-icon btn-edit"><i class="fas fa-user-plus"></i></button>
+                  <button class="btn-icon btn-light"><i class="fas fa-qrcode"></i></button>
+                </div>
+              </div>
+              
+              <div class="mesa-card occupied">
+                <div class="mesa-number">6</div>
+                <div class="mesa-status" style="background-color: rgba(255, 107, 53, 0.2); color: var(--primary);">Ocupada</div>
+                <div class="mesa-info">
+                  <small>4 pessoas • 8 min</small>
+                </div>
+                <div class="mesa-actions">
+                  <button class="btn-icon btn-edit"><i class="fas fa-receipt"></i></button>
+                  <button class="btn-icon btn-light"><i class="fas fa-info-circle"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Relatórios -->
+      <div class="content" id="relatorios">
+        <div class="content-header">
+          <h2 class="title">Relatórios</h2>
+          <div>
+            <button class="btn btn-primary">
+              <i class="fas fa-download"></i> Exportar Dados
+            </button>
+          </div>
+        </div>
+        
+        <div class="filters">
+          <select class="form-control">
+            <option>Últimos 7 dias</option>
+            <option>Últimos 30 dias</option>
+            <option>Este Mês</option>
+            <option>Mês Anterior</option>
+          </select>
+          
+          <button class="btn btn-light">
+            <i class="fas fa-filter"></i> Filtros Avançados
+          </button>
+        </div>
+        
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(255, 107, 53, 0.1); color: var(--primary);">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="stat-info">
+              <h4>R$ 15.890,00</h4>
+              <p>Vendas Totais</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(46, 196, 182, 0.1); color: var(--accent);">
+              <i class="fas fa-receipt"></i>
+            </div>
+            <div class="stat-info">
+              <h4>312</h4>
+              <p>Total de Pedidos</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(255, 190, 11, 0.1); color: #ca8a04;">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="stat-info">
+              <h4>R$ 50,93</h4>
+              <p>Ticket Médio</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: rgba(111, 66, 193, 0.1); color: #6f42c1;">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="stat-info">
+              <h4>25</h4>
+              <p>Novos Clientes</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Vendas por Período</h3>
+            <div>
+              <button class="btn btn-light">
+                <i class="fas fa-chart-bar"></i> Trocar Gráfico
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <!-- Aqui seria inserido um gráfico via JavaScript -->
+              <div style="height: 100%; display: flex; align-items: center; justify-content: center; color: #777;">
+                Gráfico de Vendas seria exibido aqui
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Produtos Mais Vendidos</h3>
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Produto</th>
+                  <th>Categoria</th>
+                  <th>Quantidade Vendida</th>
+                  <th>Receita</th>
+                  <th>% do Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>X-Tudo</td>
+                  <td>Hambúrgueres</td>
+                  <td>158</td>
+                  <td>R$ 4.092,20</td>
+                  <td>25.8%</td>
+                </tr>
+                <tr>
+                  <td>Batata Frita</td>
+                  <td>Porções</td>
+                  <td>145</td>
+                  <td>R$ 2.305,50</td>
+                  <td>14.5%</td>
+                </tr>
+                <tr>
+                  <td>X-Bacon</td>
+                  <td>Hambúrgueres</td>
+                  <td>125</td>
+                  <td>R$ 2.987,50</td>
+                  <td>18.8%</td>
+                </tr>
+                <tr>
+                  <td>Refrigerante</td>
+                  <td>Bebidas</td>
+                  <td>220</td>
+                  <td>R$ 1.518,00</td>
+                  <td>9.6%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Personalizar -->
+      <div class="content" id="personalizar">
+        <!-- Personalizar (continuação) -->
+      <div class="content" id="personalizar">
+        <div class="content-header">
+          <h2 class="title">Personalizar Sistema</h2>
+          <div>
+            <button class="btn btn-primary" id="save-personalization">
+              <i class="fas fa-save"></i> Salvar Alterações
+            </button>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Identidade Visual</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Logo da Lanchonete</label>
+                  <div class="file-upload-container">
+                    <div class="preview-container">
+                      <img src="/api/placeholder/150/100" alt="Logo atual">
+                    </div>
+                    <div class="upload-controls">
+                      <button class="btn btn-light">
+                        <i class="fas fa-upload"></i> Alterar Logo
+                      </button>
+                      <small class="text-muted">Formatos aceitos: JPG, PNG. Tamanho máximo: 2MB</small>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Cores do Sistema</label>
+                  <div class="colors-container">
+                    <div class="color-picker">
+                      <label>Cor Principal</label>
+                      <div class="color-preview" style="background-color: var(--primary);"></div>
+                      <input type="color" value="#FF6B35">
+                    </div>
+                    
+                    <div class="color-picker">
+                      <label>Cor Secundária</label>
+                      <div class="color-preview" style="background-color: var(--accent);"></div>
+                      <input type="color" value="#2EC4B6">
+                    </div>
+                    
+                    <div class="color-picker">
+                      <label>Cor de Destaque</label>
+                      <div class="color-preview" style="background-color: #ca8a04;"></div>
+                      <input type="color" value="#ca8a04">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card mt-4">
+              <div class="card-header">
+                <h3 class="card-title">Informações do Estabelecimento</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Nome da Lanchonete</label>
+                  <input type="text" class="form-control" value="Burger Express">
+                </div>
+                
+                <div class="form-group">
+                  <label>Slogan</label>
+                  <input type="text" class="form-control" value="O melhor sabor da cidade!">
+                </div>
+                
+                <div class="form-group">
+                  <label>Descrição</label>
+                  <textarea class="form-control" rows="3">Lanchonete especializada em hambúrgueres artesanais desde 2015. Oferecemos os melhores lanches e porções da região com ingredientes selecionados.</textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label>Endereço</label>
+                  <input type="text" class="form-control" value="Av. Principal, 1234 - Centro">
+                </div>
+                
+                <div class="form-group">
+                  <label>Telefone</label>
+                  <input type="text" class="form-control" value="(11) 99999-8888">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Configurações do App</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Horário de Funcionamento</label>
+                  <div class="time-grid">
+                    <div class="day-column">
+                      <div class="day-item">
+                        <span>Segunda-feira</span>
+                        <div class="time-inputs">
+                          <input type="time" class="form-control" value="11:00">
+                          <span>às</span>
+                          <input type="time" class="form-control" value="23:00">
+                        </div>
+                      </div>
+                      <div class="day-item">
+                        <span>Terça-feira</span>
+                        <div class="time-inputs">
+                          <input type="time" class="form-control" value="11:00">
+                          <span>às</span>
+                          <input type="time" class="form-control" value="23:00">
+                        </div>
+                      </div>
+                      <div class="day-item">
+                        <span>Quarta-feira</span>
+                        <div class="time-inputs">
+                          <input type="time" class="form-control" value="11:00">
+                          <span>às</span>
+                          <input type="time" class="form-control" value="23:00">
+                        </div>
+                      </div>
+                      <div class="day-item">
+                        <span>Quinta-feira</span>
+                        <div class="time-inputs">
+                          <input type="time" class="form-control" value="11:00">
+                          <span>às</span>
+                          <input type="time" class="form-control" value="23:00">
+                        </div>
+                      </div>
+                      <div class="day-item">
+                        <span>Sexta-feira</span>
+                        <div class="time-inputs">
+                          <input type="time" class="form-control" value="11:00">
+                          <span>às</span>
+                          <input type="time" class="form-control" value="00:00">
+                        </div>
+                      </div>
+                      <div class="day-item">
+                        <span>Sábado</span>
+                        <div class="time-inputs">
+                          <input type="time" class="form-control" value="11:00">
+                          <span>às</span>
+                          <input type="time" class="form-control" value="00:00">
+                        </div>
+                      </div>
+                      <div class="day-item">
+                        <span>Domingo</span>
+                        <div class="time-inputs">
+                          <input type="time" class="form-control" value="12:00">
+                          <span>às</span>
+                          <input type="time" class="form-control" value="22:00">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Opções de Entrega</label>
+                  <div class="checkbox-group">
+                    <div class="custom-checkbox">
+                      <input type="checkbox" id="delivery" checked>
+                      <label for="delivery">Delivery</label>
+                    </div>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" id="pickup" checked>
+                      <label for="pickup">Retirada no local</label>
+                    </div>
+                    <div class="custom-checkbox">
+                      <input type="checkbox" id="local" checked>
+                      <label for="local">Consumo no local</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Taxa de Entrega</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">R$</span>
+                    </div>
+                    <input type="number" class="form-control" value="6.90" step="0.1">
+                  </div>
+                  <small class="text-muted">Deixe 0 para cálculo por distância</small>
+                </div>
+                
+                <div class="form-group">
+                  <label>Tempo Médio de Entrega</label>
+                  <div class="input-group">
+                    <input type="number" class="form-control" value="45">
+                    <div class="input-group-append">
+                      <span class="input-group-text">minutos</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card mt-4">
+              <div class="card-header">
+                <h3 class="card-title">Métodos de Pagamento</h3>
+              </div>
+              <div class="card-body">
+                <div class="payment-methods">
+                  <div class="payment-method">
+                    <div class="payment-header">
+                      <i class="far fa-credit-card"></i>
+                      <span>Cartão de Crédito</span>
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                    <div class="payment-config">
+                      <div class="brand-options">
+                        <div class="custom-checkbox">
+                          <input type="checkbox" id="visa" checked>
+                          <label for="visa">Visa</label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <input type="checkbox" id="mastercard" checked>
+                          <label for="mastercard">Mastercard</label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <input type="checkbox" id="elo" checked>
+                          <label for="elo">Elo</label>
+                        </div>
+                        <div class="custom-checkbox">
+                          <input type="checkbox" id="amex" checked>
+                          <label for="amex">American Express</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="payment-method">
+                    <div class="payment-header">
+                      <i class="fas fa-money-bill-wave"></i>
+                      <span>Dinheiro</span>
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                    <div class="payment-config">
+                      <div class="form-group">
+                        <label>Troco máximo</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">R$</span>
+                          </div>
+                          <input type="number" class="form-control" value="100">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="payment-method">
+                    <div class="payment-header">
+                      <i class="fas fa-qrcode"></i>
+                      <span>PIX</span>
+                      <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                    <div class="payment-config">
+                      <div class="form-group">
+                        <label>Chave PIX</label>
+                        <input type="text" class="form-control" value="11999998888">
+                      </div>
+                      <div class="form-group">
+                        <label>Tipo de Chave</label>
+                        <select class="form-control">
+                          <option>CPF/CNPJ</option>
+                          <option selected>Telefone</option>
+                          <option>E-mail</option>
+                          <option>Chave Aleatória</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gerenciamento de Usuários (NOVA SEÇÃO) -->
+      <div class="content" id="usuarios">
+        <div class="content-header">
+          <h2 class="title">Gerenciar Usuários</h2>
+          <div>
+            <button class="btn btn-primary" id="add-user-btn">
+              <i class="fas fa-user-plus"></i> Adicionar Usuário
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Usuários do Sistema</h3>
+            <div class="search-box" style="width: 300px;">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Buscar usuários...">
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Cargo</th>
+                  <th>Nível de Acesso</th>
+                  <th>Status</th>
+                  <th>Último Acesso</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="user-info">
+                      <img src="/api/placeholder/40/40" class="user-avatar" alt="Admin">
+                      <span>João Silva</span>
+                    </div>
+                  </td>
+                  <td>joao.silva@email.com</td>
+                  <td>Gerente</td>
+                  <td><span class="badge badge-primary">Administrador</span></td>
+                  <td><span class="status active">Ativo</span></td>
+                  <td>Hoje, 14:32</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="user-info">
+                      <img src="/api/placeholder/40/40" class="user-avatar" alt="Atendente">
+                      <span>Maria Oliveira</span>
+                    </div>
+                  </td>
+                  <td>maria.oliveira@email.com</td>
+                  <td>Atendente</td>
+                  <td><span class="badge badge-success">Operador</span></td>
+                  <td><span class="status active">Ativo</span></td>
+                  <td>Hoje, 12:15</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="user-info">
+                      <img src="/api/placeholder/40/40" class="user-avatar" alt="Cozinheiro">
+                      <span>Carlos Santos</span>
+                    </div>
+                  </td>
+                  <td>carlos.santos@email.com</td>
+                  <td>Cozinheiro</td>
+                  <td><span class="badge badge-warning">Limitado</span></td>
+                  <td><span class="status active">Ativo</span></td>
+                  <td>Ontem, 20:45</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="user-info">
+                      <img src="/api/placeholder/40/40" class="user-avatar" alt="Entregador">
+                      <span>André Pereira</span>
+                    </div>
+                  </td>
+                  <td>andre.pereira@email.com</td>
+                  <td>Entregador</td>
+                  <td><span class="badge badge-warning">Limitado</span></td>
+                  <td><span class="status inactive">Inativo</span></td>
+                  <td>15/03/2025</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                      <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Permissões de Usuários -->
+        <div class="card mt-4">
+          <div class="card-header">
+            <h3 class="card-title">Níveis de Acesso</h3>
+            <button class="btn btn-light">
+              <i class="fas fa-plus"></i> Novo Nível
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="permission-cards">
+              <div class="permission-card">
+                <div class="permission-header">
+                  <h4>Administrador</h4>
+                  <div class="permission-badge" style="background-color: var(--primary);">Completo</div>
+                </div>
+                <div class="permission-content">
+                  <p>Acesso total ao sistema, incluindo configurações, relatórios financeiros e gerenciamento de usuários.</p>
+                  <div class="permission-list">
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Gerenciar Produtos
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Gerenciar Promoções
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Gerenciar Estoque
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Ver Relatórios Financeiros
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Gerenciar Usuários
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Configurar Sistema
+                    </div>
+                  </div>
+                </div>
+                <div class="permission-footer">
+                  <button class="btn btn-light btn-sm">Editar</button>
+                </div>
+              </div>
+              
+              <div class="permission-card">
+                <div class="permission-header">
+                  <h4>Operador</h4>
+                  <div class="permission-badge" style="background-color: var(--accent);">Parcial</div>
+                </div>
+                <div class="permission-content">
+                  <p>Acesso para operações diárias, incluindo gerenciamento de pedidos e estoque básico.</p>
+                  <div class="permission-list">
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Gerenciar Pedidos
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Gerenciar Mesas
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Visualizar Estoque
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Ver Relatórios Básicos
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-times"></i> Gerenciar Usuários
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-times"></i> Configurar Sistema
+                    </div>
+                  </div>
+                </div>
+                <div class="permission-footer">
+                  <button class="btn btn-light btn-sm">Editar</button>
+                </div>
+              </div>
+              
+              <div class="permission-card">
+                <div class="permission-header">
+                  <h4>Limitado</h4>
+                  <div class="permission-badge" style="background-color: #ca8a04;">Básico</div>
+                </div>
+                <div class="permission-content">
+                  <p>Acesso restrito para funções específicas como cozinha ou entrega.</p>
+                  <div class="permission-list">
+                    <div class="permission-item">
+                      <i class="fas fa-check"></i> Visualizar Pedidos
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-times"></i> Gerenciar Mesas
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-times"></i> Visualizar Estoque
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-times"></i> Ver Relatórios
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-times"></i> Gerenciar Usuários
+                    </div>
+                    <div class="permission-item">
+                      <i class="fas fa-times"></i> Configurar Sistema
+                    </div>
+                  </div>
+                </div>
+                <div class="permission-footer">
+                  <button class="btn btn-light btn-sm">Editar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Backup e Suporte (NOVA SEÇÃO) -->
+      <div class="content" id="suporte">
+        <div class="content-header">
+          <h2 class="title">Backup e Suporte</h2>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Backup do Sistema</h3>
+              </div>
+              <div class="card-body">
+                <div class="backup-info">
+                  <div class="backup-status">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                      <h4>Último backup: <span class="text-success">Hoje, 06:00</span></h4>
+                      <p>Backups automáticos configurados diariamente</p>
+                    </div>
+                  </div>
+                  
+                  <div class="backup-actions">
+                    <button class="btn btn-primary">
+                      <i class="fas fa-download"></i> Fazer Backup Agora
+                    </button>
+                    <button class="btn btn-light">
+                      <i class="fas fa-history"></i> Histórico de Backups
+                    </button>
+                  </div>
+                  
+                  <div class="backup-options mt-4">
+                    <h5>Configurações de Backup</h5>
+                    <div class="form-group">
+                      <div class="custom-checkbox">
+                        <input type="checkbox" id="backup-auto" checked>
+                        <label for="backup-auto">Backups automáticos</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Frequência</label>
+                      <select class="form-control">
+                        <option>A cada 12 horas</option>
+                        <option selected>Diariamente</option>
+                        <option>Semanalmente</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Armazenamento</label>
+                      <select class="form-control">
+                        <option selected>Nuvem</option>
+                        <option>Local</option>
+                        <option>Ambos</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Reter backups por</label>
+                      <select class="form-control">
+                        <option>7 dias</option>
+                        <option selected>30 dias</option>
+                        <option>90 dias</option>
+                        <option>365 dias</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Suporte Técnico</h3>
+              </div>
+              <div class="card-body">
+                <div class="support-options">
+                  <a href="#" class="support-card">
+                    <i class="fas fa-book"></i>
+                    <h4>Base de Conhecimento</h4>
+                    <p>Acesse artigos e tutoriais sobre como usar o sistema</p>
+                  </a>
+                  
+                  <a href="#" class="support-card">
+                    <i class="fas fa-headset"></i>
+                    <h4>Contato com o Suporte</h4>
+                    <p>Fale diretamente com nossa equipe de suporte</p>
+                  </a>
+                  
+                  <a href="#" class="support-card">
+                    <i class="fas fa-video"></i>
+                    <h4>Vídeos Tutoriais</h4>
+                    <p>Aprenda a usar o sistema através de vídeos práticos</p>
+                  </a>
+                  
+                  <a href="#" class="support-card">
+                    <i class="fas fa-comment-dots"></i>
+                    <h4>Chat ao Vivo</h4>
+                    <p>Suporte em tempo real para dúvidas rápidas</p>
+                  </a>
+                </div>
+                
+                <div class="contact-support mt-4">
+                  <h5>Entre em contato</h5>
+                  <div class="form-group">
+                    <label>Assunto</label>
+                    <select class="form-control">
+                      <option>Selecione um assunto</option>
+                      <option>Problema Técnico</option>
+                      <option>Dúvida sobre Funcionalidade</option>
+                      <option>Sugestão de Melhoria</option>
+                      <option>Outros</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Mensagem</label>
+                    <textarea class="form-control" rows="4" placeholder="Descreva sua dúvida ou problema..."></textarea>
+                  </div>
+                  <button class="btn btn-primary">Enviar Mensagem</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card mt-4">
+              <div class="card-header">
+                <h3 class="card-title">Atualizações do Sistema</h3>
+              </div>
+              <div class="card-body">
+                <div class="update-status">
+                  <i class="fas fa-check-circle text-success"></i>
+                  <div>
+                    <h4>Sistema atualizado</h4>
+                    <p>Versão 2.3.5 • Atualizado em 25/03/2025</p>
+                  </div>
+                </div>
+                
+                <div class="update-history mt-4">
+                  <h5>Histórico de Atualizações</h5>
+                  <div class="timeline">
+                    <div class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <div class="timeline-header">
+                          <h6>Versão 2.3.5</h6>
+                          <span>25/03/2025</span>
+                        </div>
+                        <p>Melhorias na interface de pedidos e correção de bugs</p>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <div class="timeline-header">
+                          <h6>Versão 2.3.0</h6>
+                          <span>12/03/2025</span>
+                        </div>
+                        <p>Novo módulo de gerenciamento de mesas e integração com pagamentos</p>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <div class="timeline-header">
+                          <h6>Versão 2.2.2</h6>
+                          <span>01/03/2025</span>
+                        </div>
+                        <p>Correções de segurança e otimização de desempenho</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ 
+   
+ 
+   <!-- Incluir JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/public/js/painel_adm.js"></script>
+
+   
+
+</body>
+</html>

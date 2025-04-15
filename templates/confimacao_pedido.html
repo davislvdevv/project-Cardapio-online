@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Confirmado - FoodExpress</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            min-height: 100vh;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ea1d2c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo i {
+            font-size: 26px;
+        }
+        
+        .success-box {
+            background-color: #e7f7e8;
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #4caf50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .success-icon i {
+            color: white;
+            font-size: 40px;
+        }
+        
+        .success-box h1 {
+            color: #2e7d32;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .success-box p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .order-number {
+            background-color: #f5f5f5;
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 15px 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 25px 0 15px;
+        }
+        
+        .section-title i {
+            color: #ea1d2c;
+            font-size: 20px;
+        }
+        
+        h2 {
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .delivery-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 12px;
+        }
+        
+        .info-row i {
+            color: #ea1d2c;
+            margin-right: 12px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .info-row .label {
+            font-weight: 600;
+            margin-right: 10px;
+            min-width: 70px;
+        }
+        
+        .delivery-status {
+            background-color: #fff4e4;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .status-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .status-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #ff9800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .status-icon i {
+            color: white;
+            font-size: 20px;
+        }
+        
+        .status-text h3 {
+            color: #ff9800;
+            margin-bottom: 3px;
+        }
+        
+        .status-text p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .progress-bar::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: #ddd;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .progress-bar::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 33%;
+            height: 3px;
+            background-color: #ff9800;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+        
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 3px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 3;
+            font-size: 14px;
+            font-weight: bold;
+            color: #999;
+        }
+        
+        .step.active {
+            border-color: #ff9800;
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .step-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            position: relative;
+            text-align: center;
+        }
+        
+        .step-label {
+            font-size: 12px;
+            color: #666;
+            width: 70px;
+            text-align: center;
+        }
+        
+        .step-label.active {
+            color: #ff9800;
+            font-weight: bold;
+        }
+        
+        .order-summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .restaurant-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .restaurant-logo {
+            width: 40px;
+            height: 40px;
+            background-color: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .restaurant-logo i {
+            color: #ea1d2c;
+            font-size: 20px;
+        }
+        
+        .restaurant-name {
+            font-weight: 600;
+        }
+        
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .item-qty {
+            background-color: #ea1d2c;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+        
+        .item-name {
+            flex: 1;
+        }
+        
+        .item:last-child {
+            border-bottom: none;
+        }
+        
+        .subtotal, .delivery-fee {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        
+        .total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+            font-size: 18px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: #ea1d2c;
+            color: white;
+            border: none;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #ea1d2c;
+            border: 1px solid #ea1d2c;
+        }
+        
+        .divider {
+            height: 8px;
+            background-color: #f5f5f5;
+            margin: 20px -20px;
+        }
+        
+        .support-box {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .support-box p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .support-box a {
+            color: #ea1d2c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                FoodExpress
+            </div>
+        </header>
+
+        <div class="success-box">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1>Pedido Confirmado!</h1>
+            <p>Seu pedido foi recebido e está sendo preparado.</p>
+            <p>Acompanhe o status abaixo</p>
+            <div class="order-number">#12345</div>
+        </div>
+
+        <div class="delivery-status">
+            <div class="status-header">
+                <div class="status-icon">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                <div class="status-text">
+                    <h3>Pedido em preparação</h3>
+                    <p>O restaurante está preparando seu pedido</p>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="step active">1</div>
+                <div class="step">2</div>
+                <div class="step">3</div>
+                <div class="step">4</div>
+            </div>
+            <div class="step-labels">
+                <div class="step-label active">Confirmado</div>
+                <div class="step-label">Preparando</div>
+                <div class="step-label">A caminho</div>
+                <div class="step-label">Entregue</div>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-info-circle"></i>
+                <h2>Informações da entrega</h2>
+            </div>
+            <div class="delivery-info">
+                <div class="info-row">
+                    <i class="fas fa-home"></i>
+                    <span class="label">Endereço:</span>
+                    <span>Rua das Flores, 123 - Apto 45, Bairro Jardim, São Paulo - SP</span>
+                </div>
+                <div class="info-row">
+                    <i class="far fa-clock"></i>
+                    <span class="label">Previsão:</span>
+                    <span>35-45 min (Chegada prevista: 19:45 - 19:55)</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span class="label">Pagamento:</span>
+                    <span>Cartão de Crédito (Visa final 1234)</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-receipt"></i>
+                <h2>Resumo do Pedido</h2>
+            </div>
+            <div class="order-summary">
+                <div class="restaurant-info">
+                    <div class="restaurant-logo">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <div class="restaurant-name">Burger King</div>
+                </div>
+                
+                <div class="item">
+                    <div>
+                        <span class="item-qty">1</span>
+                        <span class="item-name">X-Burger Especial</span>
+                    </div>
+                    <span>R$ 24,90</span>
+                </div>
+                <div class="item">
+                    <div>
+                        <span class="item-qty">1</span>
+                        <span class="item-name">Batata Frita Grande</span>
+                    </div>
+                    <span>R$ 12,50</span>
+                </div>
+                <div class="item">
+                    <div>
+                        <span class="item-qty">1</span>
+                        <span class="item-name">Refrigerante 350ml</span>
+                    </div>
+                    <span>R$ 6,00</span>
+                </div>
+                
+                <div class="subtotal">
+                    <span>Subtotal</span>
+                    <span>R$ 43,40</span>
+                </div>
+                <div class="delivery-fee">
+                    <span>Taxa de entrega</span>
+                    <span>R$ 5,00</span>
+                </div>
+                <div class="total">
+                    <span>Total</span>
+                    <span>R$ 48,40</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <div class="action-buttons">
+            <div class="btn btn-secondary">
+                <i class="fas fa-headset"></i> Suporte
+            </div>
+            <div class="btn btn-primary">
+                <i class="fas fa-route"></i> Rastrear Pedido
+            </div>
+        </div>
+
+        <div class="support-box">
+            <p>Algum problema com seu pedido?</p>
+            <a href="#"><i class="fas fa-comment-alt"></i> Fale com o atendimento</a>
+        </div>
+    </div>
+
+    <script>
+        // Simulação de atualização do status do pedido
+        setTimeout(() => {
+            document.querySelector('.progress-bar').style.setProperty('--progress', '66%');
+            document.querySelector('.progress-bar::after').style.width = '66%';
+            
+            const steps = document.querySelectorAll('.step');
+            steps[1].classList.add('active');
+            
+            const labels = document.querySelectorAll('.step-label');
+            labels[1].classList.add('active');
+            
+            document.querySelector('.status-text h3').textContent = 'Pedido em rota';
+            document.querySelector('.status-text p').textContent = 'O entregador está a caminho do seu endereço';
+            
+            document.querySelector('.status-icon i').className = 'fas fa-motorcycle';
+        }, 10000); // Simula atualização após 10 segundos
+    </script>
+</body>
+</html>

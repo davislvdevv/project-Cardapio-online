@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/carrinho.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+    <title>Carrinho</title>
+</head>
+<body>
+    <div class="nav-top cart">
+        <a href="index.html" class="btn-icon">
+            <span class="iconify" data-icon="mdi-light:arrow-left-circle"></span>
+        </a>
+        
+        <i class="ri-shopping-cart-line">Carrinho</i>
+        <i class="ri-more-line"></i>
+    </div>
+    
+    <div class="page-content">
+        <!-- Contêiner dinâmico para os itens do carrinho -->
+        <div class="listacarrinho">
+            <!-- Os itens serão inseridos via JS -->
+             
+        </div>
+    </div>
+    
+    <!-- Responsive Toolbar para telas menores -->
+    <nav class="toolbar-bottom">
+        <div class="toolbar-summary">
+            <div class="toolbar-row">
+                <span class="label">subtotal</span>
+                <span class="value" id="subtotal">0.00</span>
+            </div>
+            <div class="toolbar-row">
+                <span class="label">frete:</span>
+                <span class="value" id="frete">0.00</span>
+            </div>
+        </div>
+        <div class="toolbar-action">
+            <button class="finalize-order" onclick="window.location.href='finalizar_compras.html'">
+                <span>Finalizar</span>
+            </button>
+        </div>
+        
+        
+        
+    </nav>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Seu JS responsável pelo carrinho -->
+    <script src="/public/js/apiService.js"></script>
+    <script src="/public/js/Carrinho.js"></script>
+    
+</body>
+</html>
